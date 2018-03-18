@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-sm-8">
+      <h3>{{wineList}}</h3>
+      <table class="table">
+        <thead>
+            <th class="pointerCursor" (click)="sortMainList('name')">Name</th>
+            <th class="pointerCursor" (click)="sortMainList('country')">Country</th>
+            <th class="pointerCursor" (click)="sortMainList('year')">Year</th>
+            <td><button [hidden]="!isFiltered" (click)="removeFilter()"><fa name="filter"></fa></button></td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let wine of winedata">
+            <td class="pointerCursor" (click)="openDetailView(wine.id)">{{wine.name}}</td>
+            <td class="pointerCursor" (click)="filterMainList('country',wine.country)">{{wine.country}}</td>
+            <td class="pointerCursor" (click)="filterMainList('year',wine.year)">{{wine.year}}</td>
+            <td><button (click)="addWineToPersonalList(wine)"><fa name="cart-plus"></fa></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <h3>{{yourSelectedWines}}</h3>
+      <table class="table">
+        <thead>
+            <th>Name</th>
+            <td><fa name="shopping-cart"></fa></td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let wine of myCurrentWineList">
+            <td class="pointerCursor" (click)="openDetailView(wine.id)">{{wine.name}}</td>
+            <td><button (click)="removeWineFromPersonalList(wine.id)"><fa name="trash"></fa></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
